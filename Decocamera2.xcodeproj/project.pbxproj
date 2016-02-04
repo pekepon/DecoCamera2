@@ -32,6 +32,7 @@
 		823365801C5ED14900037CD0 /* frame_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 8233656F1C5ED14900037CD0 /* frame_16.png */; };
 		823365831C5ED1CF00037CD0 /* FrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823365821C5ED1CF00037CD0 /* FrameViewController.m */; };
 		823365861C5ED1E800037CD0 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823365851C5ED1E800037CD0 /* ImageViewController.m */; };
+		823365CE1C63348400037CD0 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823365CD1C63348400037CD0 /* CoreImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		823365821C5ED1CF00037CD0 /* FrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameViewController.m; sourceTree = "<group>"; };
 		823365841C5ED1E800037CD0 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		823365851C5ED1E800037CD0 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		823365CD1C63348400037CD0 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823365CE1C63348400037CD0 /* CoreImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +85,7 @@
 		8233653B1C5ED13400037CD0 = {
 			isa = PBXGroup;
 			children = (
+				823365CD1C63348400037CD0 /* CoreImage.framework */,
 				823365461C5ED13400037CD0 /* Decocamera2 */,
 				823365451C5ED13400037CD0 /* Products */,
 			);
@@ -386,6 +390,7 @@
 				8233655D1C5ED13400037CD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

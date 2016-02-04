@@ -23,7 +23,10 @@
 
 @end
 
-@implementation ImageViewController
+@implementation ImageViewController {
+    
+    IBOutlet UISlider *sl;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,6 +34,8 @@
     
     self.imageView.image = self.editImage;
     self.isGray = NO;
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,10 +113,10 @@
 
 - (IBAction)zoomButtonAction:(id)sender {
     
-    self.imageView.image = nil;
+    //self.imageView.image = nil;
     
     //UIImage作成
-    UIImage *image = self.editImage;
+    UIImage *image = self.imageView.image;
     
     // 画像の幅
     CGFloat width = image.size.width;
@@ -119,7 +124,7 @@
     CGFloat height = image.size.height;
     // 拡大・縮小率
     CGFloat scale = 1.25f;
-    
+    self.imageView.transform = CGAffineTransformScale(self.imageView.transform, scale, scale);
     //UIImageView作成
     UIImageView *imageView =[[UIImageView alloc]initWithImage:image];
     
@@ -127,16 +132,18 @@
     CGRect rect = CGRectMake(0, 0, width*scale, height*scale);
     // ImageView frame をCGRectMakeで作った矩形に合わせる
     imageView.frame = rect;
+    imageView.center = CGPointMake((imageView.frame.size.width) / 3, (imageView.frame.size.height) / 3);
     // view に ImageView を追加する
-    [self.imageView addSubview:imageView];
+    //[self.imageView addSubview:imageView];
+    
 }
 
 - (IBAction)miniButtonAction:(id)sender {
 
-    self.imageView.image = nil;
+    //self.imageView.image = nil;
     
     //UIImage作成
-    UIImage *image = self.editImage;
+    UIImage *image = self.imageView.image;
     
     // 画像の幅
     CGFloat width = image.size.width;
@@ -144,7 +151,7 @@
     CGFloat height = image.size.height;
     // 拡大・縮小率
     CGFloat scale = 0.75f;
-    
+    self.imageView.transform = CGAffineTransformScale(self.imageView.transform, scale, scale);
     //UIImageView作成
     UIImageView *imageView =[[UIImageView alloc]initWithImage:image];
     
@@ -152,9 +159,18 @@
     CGRect rect = CGRectMake(0, 0, width*scale, height*scale);
     // ImageView frame をCGRectMakeで作った矩形に合わせる
     imageView.frame = rect;
+    imageView.center = CGPointMake((imageView.frame.size.width) / 2, (imageView.frame.size.height) / 2);
     // view に ImageView を追加する
-    [self.imageView addSubview:imageView];
+    //[self.imageView addSubview:imageView];
 }
+
+- (IBAction)SliderChange:(id)sender {
+    int v = 0;
+    v = sl.value;
+    NSLog(@"%d", v);
+    
+}
+
 /*
 #pragma mark - Navigation
 
