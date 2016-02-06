@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import <CoreImage/CoreImage.h>
+
 
 @interface ImageViewController : ViewController
 

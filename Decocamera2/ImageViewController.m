@@ -116,23 +116,23 @@
     //self.imageView.image = nil;
     
     //UIImage作成
-    UIImage *image = self.imageView.image;
+    //UIImage *image = self.imageView.image;
     
     // 画像の幅
-    CGFloat width = image.size.width;
+    //CGFloat width = image.size.width;
     // 画像の高さ
-    CGFloat height = image.size.height;
+    //CGFloat height = image.size.height;
     // 拡大・縮小率
     CGFloat scale = 1.25f;
     self.imageView.transform = CGAffineTransformScale(self.imageView.transform, scale, scale);
     //UIImageView作成
-    UIImageView *imageView =[[UIImageView alloc]initWithImage:image];
+    //UIImageView *imageView =[[UIImageView alloc]initWithImage:image];
     
     // 画像サイズ変更
-    CGRect rect = CGRectMake(0, 0, width*scale, height*scale);
+    //CGRect rect = CGRectMake(0, 0, width*scale, height*scale);
     // ImageView frame をCGRectMakeで作った矩形に合わせる
-    imageView.frame = rect;
-    imageView.center = CGPointMake((imageView.frame.size.width) / 3, (imageView.frame.size.height) / 3);
+    //imageView.frame = rect;
+    //imageView.center = CGPointMake((imageView.frame.size.width) / 3, (imageView.frame.size.height) / 3);
     // view に ImageView を追加する
     //[self.imageView addSubview:imageView];
     
@@ -143,32 +143,43 @@
     //self.imageView.image = nil;
     
     //UIImage作成
-    UIImage *image = self.imageView.image;
+    //UIImage *image = self.imageView.image;
     
     // 画像の幅
-    CGFloat width = image.size.width;
+    //CGFloat width = image.size.width;
     // 画像の高さ
-    CGFloat height = image.size.height;
+    //CGFloat height = image.size.height;
     // 拡大・縮小率
     CGFloat scale = 0.75f;
     self.imageView.transform = CGAffineTransformScale(self.imageView.transform, scale, scale);
     //UIImageView作成
-    UIImageView *imageView =[[UIImageView alloc]initWithImage:image];
+    //UIImageView *imageView =[[UIImageView alloc]initWithImage:image];
     
     // 画像サイズ変更
-    CGRect rect = CGRectMake(0, 0, width*scale, height*scale);
+    //CGRect rect = CGRectMake(0, 0, width*scale, height*scale);
     // ImageView frame をCGRectMakeで作った矩形に合わせる
-    imageView.frame = rect;
-    imageView.center = CGPointMake((imageView.frame.size.width) / 2, (imageView.frame.size.height) / 2);
+    //imageView.frame = rect;
+    //imageView.center = CGPointMake((imageView.frame.size.width) / 2, (imageView.frame.size.height) / 2);
     // view に ImageView を追加する
     //[self.imageView addSubview:imageView];
 }
 
 - (IBAction)SliderChange:(id)sender {
-    int v = 0;
-    v = sl.value;
-    NSLog(@"%d", v);
     
+    UIImage* image = self.editImage;
+    
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *ciFilter = [CIFilter filterWithName:@"CIColorControls"
+                                    keysAndValues:kCIInputImageKey, ciImage,
+                          @"inputBrightness",[NSNumber numberWithFloat:sl.value], nil];
+    
+    CIContext *ciContext = [CIContext contextWithOptions:nil];
+    CGImageRef cgimg = [ciContext createCGImage:[ciFilter outputImage] fromRect:[[ciFilter outputImage] extent]];
+    UIImage* newImage = [UIImage imageWithCGImage:cgimg scale:1.0 orientation:UIImageOrientationUp];
+    CGImageRelease(cgimg);
+    
+    self.imageView.image = newImage;
+
 }
 
 /*
