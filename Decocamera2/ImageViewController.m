@@ -43,12 +43,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (IBAction)saveButtonAction:(id)sender {
     
-    SEL selector = @selector(onCompleteCapture:didFinishSavingWithError:contextInfo:);
+    CGSize resizedSize = CGSizeMake(self.imageView.frame.size.width, self.imageView.frame.size.height); UIGraphicsBeginImageContext(resizedSize);
+    [self.imageView.image drawInRect:CGRectMake(0, 0, resizedSize.width, resizedSize.height)]; UIImage* resizedImage = UIGraphicsGetImageFromCurrentImageContext(); UIGraphicsEndImageContext(); SEL selector = @selector(onCompleteCapture:didFinishSavingWithError:contextInfo:);
     //画像を保存する
-    UIImageWriteToSavedPhotosAlbum(self.imageView.image, self, selector, NULL);
+    UIImageWriteToSavedPhotosAlbum(resizedImage, self, selector, NULL);
 }
+
 
 //画像保存完了時のセレクタ
 - (void)onCompleteCapture:(UIImage *)screenImage didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
@@ -116,7 +119,7 @@
     //self.imageView.image = nil;
     
     //UIImage作成
-    //UIImage *image = self.imageView.image;
+    UIImage *image = self.imageView.image;
     
     // 画像の幅
     //CGFloat width = image.size.width;
@@ -135,6 +138,10 @@
     //imageView.center = CGPointMake((imageView.frame.size.width) / 3, (imageView.frame.size.height) / 3);
     // view に ImageView を追加する
     //[self.imageView addSubview:imageView];
+    
+
+    
+    
     
 }
 
